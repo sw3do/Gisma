@@ -18,6 +18,7 @@ class RockPaperScissors:
             return "You lose!" 
         
 def play_game():
+ while True:
   try:
       user_choice = input("Enter rock, paper, or scissors: ").lower()
       if user_choice not in ['rock', 'paper', 'scissors']:
