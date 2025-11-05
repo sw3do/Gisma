@@ -1,3 +1,4 @@
 *.md
 **.md
 **/*.md
+.DS_Store
