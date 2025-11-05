@@ -67,6 +67,6 @@ def try_except_else_in():
         print("\nProcess interrupted by user.")
         break
     else:
-        print(f"Result: {result}")
+       return print(f"Result: {result}")
     
 try_except_else_in()
