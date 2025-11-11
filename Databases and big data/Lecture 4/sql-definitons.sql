@@ -177,3 +177,7 @@ CASE
            WHEN total_amount > 500 THEN 'High'
            END AS 'Order Value'
 FROM Orders
+
+SELECT customer_id, o_status, COUNT(*)
+FROM Orders
+GROUP BY customer_id, o_status
