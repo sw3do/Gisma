@@ -1,0 +1,4 @@
+We learn Python.
+GISMA is our university.
+Cool!
+We LIKE both Python and GISMA.

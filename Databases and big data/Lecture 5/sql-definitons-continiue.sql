@@ -151,6 +151,105 @@ GROUP BY country_name
 ORDER BY customer_count DESC;
 
 
+SELECT * 
+FROM Customers
+ORDER BY FIRST_NAME, LAST_NAME;
+
+SELECT customer_id, o_status, COUNT(*)
+FROM Orders
+GROUP BY customer_id, o_status
+
+ORDER BY customer_id, o_status;
 
 
+-- SQL, A JOIN OPERATION COMBINES ROWS FROM TWO OR MORE TABLES BASED ON A RELATED COLUMN BETWEEN THEM. We have diffrent types of Join including INNER JOIN, RIGHT JOIN, FULL JOIN, LEFT JOIN
 
+SELECT * FROM Orders
+JOIN Customers ON Orders.customer_id = Customers.customer_id
+WHERE Customers.country = 'Germany';
+
+SELECT Orders.ORDER_ID, CONCAT(Customers.first_name, ' ', Customers.last_name) AS customer_name FROM Orders
+JOIN Customers ON Orders.customer_id = Customers.customer_id
+WHERE Customers.country = 'Germany';
+
+-- First one is left table, second one is right table
+-- oRDERS İS LEFT, Customers IS RIGHT
+
+
+SELECT Orders.ORDER_ID, CONCAT(Customers.first_name, ' ', Customers.last_name) AS customer_name FROM Orders
+INNER JOIN Customers ON Orders.customer_id = Customers.customer_id
+WHERE Customers.country = 'Germany';
+
+
+SELECT Orders.ORDER_ID, CONCAT(Customers.first_name, ' ', Customers.last_name) AS customer_name FROM Orders
+RIGHT JOIN Customers ON Orders.customer_id = Customers.customer_id
+WHERE Customers.country = 'Germany';
+
+-- RIGHT JOIN AND INNER JOIN ARE SAME
+
+
+SELECT Orders.ORDER_ID, CONCAT(Customers.first_name, ' ', Customers.last_name) AS customer_name FROM Orders
+INNER JOIN Customers ON Orders.customer_id = Customers.customer_id
+WHERE Customers.country = 'Germany';
+
+
+SELECT Orders.ORDER_ID, CONCAT(Customers.first_name, ' ', Customers.last_name) AS customer_name FROM Orders
+LEFT JOIN Customers ON Orders.customer_id = Customers.customer_id;
+
+
+SELECT Orders.ORDER_ID, CONCAT(Customers.first_name, ' ', Customers.last_name) AS customer_name FROM Orders
+LEFT JOIN Customers ON Orders.customer_id = Customers.customer_id
+WHERE Orders.ORDER_ID IS NOT NULL;
+
+
+SELECT P.PRODUCT_ID, P.PRODUCT_NAME, S.NAME AS SUPPLIER_NAME
+FROM PRODUCTS P
+JOIN SUPPLIERS S ON P.SUPPLIER_ID = S.SUPPLIER_ID;
+
+
+SELECT OD.ORDER_ID, P.PRODUCT_NAME, P.PRODUCT_ID, O.ORDER_DATE
+FROM ORDER_DETAILS OD
+JOIN PRODUCTS P ON OD.PRODUCT_ID = P.PRODUCT_ID
+JOIN ORDERS O ON OD.ORDER_ID = O.ORDER_ID
+---------
+
+-- Set Theory
+
+-- Set theory operators allow you to peform operations similar to those in mathematical set theory. tHESE oPERATORS Enable you to manipulate and combine the result of multiple SQL queries.
+
+-- UNION
+-- INTERSECT
+-- EXCEPT
+-- UNION ALL
+
+SELECT Customer_ID from Customers
+UNION
+Select Customer_ID from Orders;
+
+SELECT Customer_ID from Customers
+UNION ALL
+Select Customer_ID from Orders;
+
+SELECT * FROM Orders O
+RIGHT JOIN Customers C ON O.Customer_ID = C.Customer_ID
+UNION ALL
+SELECT * FROM Orders O
+RIGHT JOIN Customers C ON O.Customer_ID = C.Customer_ID
+
+SELECT Customer_ID from Customers
+UNION ALL
+Select Customer_ID from Orders;
+
+---
+
+
+SELECT Customer_ID from Customers
+EXCEPT
+Select Customer_ID from Orders;
+
+---
+
+
+SELECT Customer_ID from Customers
+INTERSECT
+Select Customer_ID from Orders;

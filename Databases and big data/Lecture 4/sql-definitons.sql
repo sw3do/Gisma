@@ -178,6 +178,4 @@ CASE
            END AS 'Order Value'
 FROM Orders
 
-SELECT customer_id, o_status, COUNT(*)
-FROM Orders
-GROUP BY customer_id, o_status
+
